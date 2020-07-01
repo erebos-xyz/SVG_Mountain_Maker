@@ -16,31 +16,31 @@ function createMountain() {
     }
 
     // Generate primordial randomizer
-    myRandomFunction = Math.seed(seed);
+    //myRandomFunction = Math.seed(seed);
 
     // Check further parameters
     if(mountainTag.hasAttribute("startHeight")) {
         startHeight = parseInt(mountainTag.getAttribute("startHeight"));
     } else {
-        startHeight = Math.floor(myRandomFunction() * 52) + 60;
+        startHeight = 60;
     }
 
     if(mountainTag.hasAttribute("minMountainHeight")) {
         minMountainHeight = parseInt(mountainTag.getAttribute("minMountainHeight"));
     } else {
-        minMountainHeight = Math.floor(myRandomFunction() * 56) + 56;
+        minMountainHeight = 56;
     }
 
     if(mountainTag.hasAttribute("maxMountainHeight")) {
         maxMountainHeight = parseInt(mountainTag.getAttribute("maxMountainHeight"));
     } else {
-        maxMountainHeight = Math.floor(myRandomFunction() * 56) + 456;
+        maxMountainHeight = 512;
     }
 
     if(mountainTag.hasAttribute("maxOffsetHeight")) {
         maxOffsetHeight = parseInt(mountainTag.getAttribute("maxOffsetHeight"));
     } else {
-        maxOffsetHeight = Math.floor(myRandomFunction() * 56) + 44;
+        maxOffsetHeight = 64;
     }
 
     if(mountainTag.hasAttribute("width")) {
@@ -52,13 +52,14 @@ function createMountain() {
     if(mountainTag.hasAttribute("minOffsetWidth")) {
         minOffsetWidth = parseInt(mountainTag.getAttribute("minOffsetWidth"));
     } else {
-        minOffsetWidth = Math.floor(myRandomFunction() * 56) + 8;
+        minOffsetWidth = 32;
     }
 
     if(mountainTag.hasAttribute("maxOffsetWidth")) {
         maxOffsetWidth = parseInt(mountainTag.getAttribute("maxOffsetWidth"));
     } else {
-        maxOffsetWidth = Math.floor(myRandomFunction() * 56) + 56;
+        maxOffsetWidth = 96;
+    }
 
     if(mountainTag.hasAttribute("baseColour")) {
         baseColour = mountainTag.getAttribute("baseColour");
@@ -66,7 +67,7 @@ function createMountain() {
         baseColour = "#1e0522";
     }
 
-    // Resetting Randomizer
+    // Setting Randomizer
     myRandomFunction = Math.seed(seed);
     myRandomFunctionLeft = Math.seed(Math.floor(myRandomFunction() * 10000));
     myRandomFunctionRight = Math.seed(Math.floor(myRandomFunction() * 10000));

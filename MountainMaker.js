@@ -3,7 +3,8 @@ function createMountain() {
     var startHeight, minMountainHeight, maxMountainHeight, maxOffsetHeight, 
         width, minOffsetWidth, maxOffsetWidth, 
         seed, myRandomFunction, myRandomFunctionLeft, myRandomFunctionRight,
-        polygon, polygonLeft, polygonRight, helpX, helpY;
+        polygon, polygonLeft, polygonRight, helpX, helpY,
+        baseColour;
 
     var mountainTag = document.getElementsByTagName("mountain")[0];
 
@@ -58,6 +59,11 @@ function createMountain() {
         maxOffsetWidth = parseInt(mountainTag.getAttribute("maxOffsetWidth"));
     } else {
         maxOffsetWidth = Math.floor(myRandomFunction() * 56) + 56;
+
+    if(mountainTag.hasAttribute("baseColour")) {
+        baseColour = mountainTag.getAttribute("baseColour");
+    } else {
+        baseColour = "#1e0522";
     }
 
     // Resetting Randomizer
@@ -115,6 +121,7 @@ function createMountain() {
     document.getElementById("Layer_1").appendChild(polygon);
 
     // Colourize mountain
+    document.getElementById("Layer_1").getElementsByTagName("defs")[0].getElementsByTagName("style")[0].innerHTML = ".cls-1{fill:" + baseColour + ";stroke:" + baseColour + ";}";
     // Show mountain
 
     // Output parameters for debugging

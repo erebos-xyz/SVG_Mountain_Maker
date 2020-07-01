@@ -1,12 +1,12 @@
 function createMountain() {
     // Variabledeclaration
-    var startHeight, minMountainHeight, maxMountainHeight, maxOffsetHeight, 
+    let startHeight, minMountainHeight, maxMountainHeight, maxOffsetHeight, 
         width, minOffsetWidth, maxOffsetWidth, 
         seed, myRandomFunction, myRandomFunctionLeft, myRandomFunctionRight,
         polygon, polygonLeft, polygonRight, helpX, helpY,
         baseColour;
 
-    var mountainTag = document.getElementsByTagName("mountain")[0];
+    let mountainTag = document.getElementsByTagName("mountain")[0];
 
     // Check seed parameter
     if(mountainTag.hasAttribute("seed")) {
@@ -138,15 +138,15 @@ function createMountain() {
 
 // Seed randomizer from https://stackoverflow.com/questions/521295/seeding-the-random-number-generator-in-javascript
 Math.seed = function(s) {
-    var mask = 0xffffffff;
-    var m_w  = (123456789 + s) & mask;
-    var m_z  = (987654321 - s) & mask;
+    let mask = 0xffffffff;
+    let m_w  = (123456789 + s) & mask;
+    let m_z  = (987654321 - s) & mask;
 
     return function() {
       m_z = (36969 * (m_z & 65535) + (m_z >>> 16)) & mask;
       m_w = (18000 * (m_w & 65535) + (m_w >>> 16)) & mask;
 
-      var result = ((m_z << 16) + (m_w & 65535)) >>> 0;
+      let result = ((m_z << 16) + (m_w & 65535)) >>> 0;
       result /= 4294967296;
       return result;
     }
@@ -154,11 +154,11 @@ Math.seed = function(s) {
 
 // Calculating new Y Offset
 function newYOffset(maxMountainHeight, minMountainHeight, maxOffsetHeight, myRandomFunction, y) {
-    var maxAddY = maxMountainHeight - y;
+    let maxAddY = maxMountainHeight - y;
     if(maxAddY > maxOffsetHeight)
         maxAddY = maxOffsetHeight;
 
-    var maxSubY = y - minMountainHeight;
+    let maxSubY = y - minMountainHeight;
     if(maxSubY > maxOffsetHeight)
         maxSubY = maxOffsetHeight;
 

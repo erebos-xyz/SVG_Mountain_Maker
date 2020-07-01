@@ -7,15 +7,17 @@ function createMountain() {
 
     var mountainTag = document.getElementsByTagName("mountain")[0];
 
-    // Check parameters
+    // Check seed parameter
     if(mountainTag.hasAttribute("seed")) {
         seed = mountainTag.getAttribute("seed");
     } else {
         seed = 1234;
     }
 
+    // Generate primordial randomizer
     myRandomFunction = Math.seed(seed);
 
+    // Check further parameters
     if(mountainTag.hasAttribute("startHeight")) {
         startHeight = mountainTag.getAttribute("startHeight");
     } else {
@@ -115,7 +117,7 @@ function createMountain() {
     // Colourize mountain
     // Show mountain
 
-    //Output parameters for debugging
+    // Output parameters for debugging
     document.getElementById("testId").innerText = "Parameters: [Seed: '" + seed + 
                                                   "', startHeight: '" + startHeight +
                                                   "', minMountainHeight: '" + minMountainHeight +
@@ -126,6 +128,7 @@ function createMountain() {
                                                   "', maxOffsetWidth: '" + maxOffsetWidth + "']";
 }
 
+// Seed randomizer from https://stackoverflow.com/questions/521295/seeding-the-random-number-generator-in-javascript
 Math.seed = function(s) {
     var mask = 0xffffffff;
     var m_w  = (123456789 + s) & mask;
@@ -141,6 +144,7 @@ Math.seed = function(s) {
     }
 }
 
+// Calculating new Y Offset
 function newYOffset(maxMountainHeight, minMountainHeight, maxOffsetHeight, myRandomFunction, y) {
     var maxAddY = maxMountainHeight - y;
     if(maxAddY > maxOffsetHeight)
@@ -153,6 +157,7 @@ function newYOffset(maxMountainHeight, minMountainHeight, maxOffsetHeight, myRan
     return Math.floor(myRandomFunction.call() * (maxAddY + maxSubY)) - maxSubY;
 }
 
+// Calculating new X Offset
 function newXOffset(maxOffsetWidth, minOffsetWidth, myRandomFunction) {
     return Math.floor(myRandomFunction.call() * (maxOffsetWidth - minOffsetWidth)) + minOffsetWidth;
 }

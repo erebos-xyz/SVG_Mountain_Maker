@@ -19,43 +19,43 @@ function createMountain() {
 
     // Check further parameters
     if(mountainTag.hasAttribute("startHeight")) {
-        startHeight = mountainTag.getAttribute("startHeight");
+        startHeight = parseInt(mountainTag.getAttribute("startHeight"));
     } else {
         startHeight = Math.floor(myRandomFunction() * 52) + 60;
     }
 
     if(mountainTag.hasAttribute("minMountainHeight")) {
-        minMountainHeight = mountainTag.getAttribute("minMountainHeight");
+        minMountainHeight = parseInt(mountainTag.getAttribute("minMountainHeight"));
     } else {
         minMountainHeight = Math.floor(myRandomFunction() * 56) + 56;
     }
 
     if(mountainTag.hasAttribute("maxMountainHeight")) {
-        maxMountainHeight = mountainTag.getAttribute("maxMountainHeight");
+        maxMountainHeight = parseInt(mountainTag.getAttribute("maxMountainHeight"));
     } else {
         maxMountainHeight = Math.floor(myRandomFunction() * 56) + 456;
     }
 
     if(mountainTag.hasAttribute("maxOffsetHeight")) {
-        maxOffsetHeight = mountainTag.getAttribute("maxOffsetHeight");
+        maxOffsetHeight = parseInt(mountainTag.getAttribute("maxOffsetHeight"));
     } else {
         maxOffsetHeight = Math.floor(myRandomFunction() * 56) + 44;
     }
 
     if(mountainTag.hasAttribute("width")) {
-        width = mountainTag.getAttribute("width");
+        width = parseInt(mountainTag.getAttribute("width"));
     } else {
         width = 1920;
     }
 
     if(mountainTag.hasAttribute("minOffsetWidth")) {
-        minOffsetWidth = mountainTag.getAttribute("minOffsetWidth");
+        minOffsetWidth = parseInt(mountainTag.getAttribute("minOffsetWidth"));
     } else {
         minOffsetWidth = Math.floor(myRandomFunction() * 56) + 8;
     }
 
     if(mountainTag.hasAttribute("maxOffsetWidth")) {
-        maxOffsetWidth = mountainTag.getAttribute("maxOffsetWidth");
+        maxOffsetWidth = parseInt(mountainTag.getAttribute("maxOffsetWidth"));
     } else {
         maxOffsetWidth = Math.floor(myRandomFunction() * 56) + 56;
     }

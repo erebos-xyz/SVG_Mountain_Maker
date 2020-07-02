@@ -22,7 +22,7 @@ function createMountain() {
     if(mountainTag.hasAttribute("startHeight")) {
         startHeight = parseInt(mountainTag.getAttribute("startHeight"));
     } else {
-        startHeight = 60;
+        startHeight = 508;
     }
 
     if(mountainTag.hasAttribute("minMountainHeight")) {
@@ -74,8 +74,8 @@ function createMountain() {
 
     // Set first points
     helpX = Math.floor(width/2);
-    helpY = startHeight;
-    polygonLeft = polygonRight = helpX + " " + startHeight;
+    helpY = maxMountainHeight - startHeight;
+    polygonLeft = polygonRight = helpX + " " + helpY;
 
     // Create all right points
     helpX += newXOffset(maxOffsetWidth, minOffsetWidth, myRandomFunctionRight);
@@ -90,11 +90,11 @@ function createMountain() {
     // Close right polygon
     polygonRight += " " + width + " " + maxMountainHeight;
     polygonRight += " " + Math.floor(width/2) + " " + maxMountainHeight;
-    polygonRight += " " + Math.floor(width/2) + " " + startHeight;
+    polygonRight += " " + Math.floor(width/2) + " " + (maxMountainHeight - startHeight);
 
     // Create all left points
     helpX = Math.floor(width/2);
-    helpY = startHeight;
+    helpY = maxMountainHeight - startHeight;
 
     helpX -= newXOffset(maxOffsetWidth, minOffsetWidth, myRandomFunctionLeft);
     do {
@@ -108,7 +108,7 @@ function createMountain() {
     // Close left Polygon
     polygonLeft += " 0 " + maxMountainHeight;
     polygonLeft += " " + Math.floor(width/2) + " " + maxMountainHeight;
-    polygonLeft += " " + Math.floor(width/2) + " " + startHeight;
+    polygonLeft += " " + Math.floor(width/2) + " " + (maxMountainHeight - startHeight);
 
     // Create mountain AVG (Polygon)
     polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");

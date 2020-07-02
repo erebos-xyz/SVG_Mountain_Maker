@@ -1,6 +1,6 @@
 function createMountain() {
     // Variabledeclaration
-    let startHeight, minMountainHeight, maxMountainHeight, maxOffsetHeight, 
+    let startHeight, minMountainHeight, maxMountainHeight, maxOffsetHeight, airGap,
         width, minOffsetWidth, maxOffsetWidth, 
         seed, myRandomFunction, myRandomFunctionLeft, myRandomFunctionRight,
         svg, defs, style, polygon, 
@@ -36,6 +36,12 @@ function createMountain() {
         maxMountainHeight = parseInt(mountainTag.getAttribute("maxMountainHeight"));
     } else {
         maxMountainHeight = 512;
+    }
+
+    if(mountainTag.hasAttribute("airGap")) {
+        airGap = parseInt(mountainTag.getAttribute("airGap"));
+    } else {
+        airGap = Math.floor(maxMountainHeight * 0.2);
     }
 
     if(mountainTag.hasAttribute("maxOffsetHeight")) {
@@ -76,22 +82,22 @@ function createMountain() {
     // Set first points
     helpX = Math.floor(width/2);
     helpY = maxMountainHeight - startHeight;
-    polygonLeft = polygonRight = helpX + " " + helpY;
+    polygonLeft = polygonRight = helpX + " " + (helpY + airGap);
 
     // Create all right points
     helpX += newXOffset(maxOffsetWidth, minOffsetWidth, myRandomFunctionRight);
     do {
         helpY += newYOffset(maxMountainHeight, minMountainHeight, maxOffsetHeight, myRandomFunctionRight, helpY);
-        polygonRight += " " + helpX + " " + helpY;
+        polygonRight += " " + helpX + " " + (helpY + airGap);
         helpX += newXOffset(maxOffsetWidth, minOffsetWidth, myRandomFunctionRight);
     } while (helpX < (width - minOffsetWidth));
     helpY += newYOffset(maxMountainHeight, minMountainHeight, maxOffsetHeight, myRandomFunctionRight, helpY);
-    polygonRight += " " + width + " " + helpY;
+    polygonRight += " " + width + " " + (helpY + airGap);
 
     // Close right polygon
-    polygonRight += " " + width + " " + maxMountainHeight;
-    polygonRight += " " + Math.floor(width/2) + " " + maxMountainHeight;
-    polygonRight += " " + Math.floor(width/2) + " " + (maxMountainHeight - startHeight);
+    polygonRight += " " + width + " " + (maxMountainHeight + airGap);
+    polygonRight += " " + Math.floor(width/2) + " " + (maxMountainHeight + airGap);
+    polygonRight += " " + Math.floor(width/2) + " " + (maxMountainHeight - startHeight + airGap);
 
     // Create all left points
     helpX = Math.floor(width/2);
@@ -100,22 +106,22 @@ function createMountain() {
     helpX -= newXOffset(maxOffsetWidth, minOffsetWidth, myRandomFunctionLeft);
     do {
         helpY += newYOffset(maxMountainHeight, minMountainHeight, maxOffsetHeight, myRandomFunctionLeft, helpY);
-        polygonLeft += " " + helpX + " " + helpY;
+        polygonLeft += " " + helpX + " " + (helpY + airGap);
         helpX -= newXOffset(maxOffsetWidth, minOffsetWidth, myRandomFunctionLeft);
     } while (helpX > minOffsetWidth);
     helpY += newYOffset(maxMountainHeight, minMountainHeight, maxOffsetHeight, myRandomFunctionLeft, helpY);
-    polygonLeft += " 0 " + helpY;
+    polygonLeft += " 0 " + (helpY + airGap);
 
     // Close left Polygon
-    polygonLeft += " 0 " + maxMountainHeight;
-    polygonLeft += " " + Math.floor(width/2) + " " + maxMountainHeight;
-    polygonLeft += " " + Math.floor(width/2) + " " + (maxMountainHeight - startHeight);
+    polygonLeft += " 0 " + (maxMountainHeight + airGap);
+    polygonLeft += " " + Math.floor(width/2) + " " + (maxMountainHeight + airGap);
+    polygonLeft += " " + Math.floor(width/2) + " " + (maxMountainHeight - startHeight + airGap);
 
     // Create mountain SVG (Polygon)
     svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("id", "s" + seed);
     svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    svg.setAttribute("viewBox", "0 0 " + width + " " + (maxMountainHeight * 1.1))
+    svg.setAttribute("viewBox", "0 0 " + width + " " + (maxMountainHeight + airGap))
 
     defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
     style = document.createElementNS("http://www.w3.org/2000/svg", "style");
@@ -141,7 +147,7 @@ function createMountain() {
     mountainTag.parentNode.removeChild(mountainTag);
 
     // Output parameters for debugging
-    document.getElementById("testId").innerText = "Parameters: [Seed: '" + seed + 
+    /*document.getElementById("testId").innerText = "Parameters: [Seed: '" + seed + 
                                                   "', startHeight: '" + startHeight +
                                                   "', minMountainHeight: '" + minMountainHeight +
                                                   "', maxMountainHeight: '" + maxMountainHeight +
@@ -149,6 +155,7 @@ function createMountain() {
                                                   "', width: '" + width +
                                                   "', minOffsetWidth: '" + minOffsetWidth +
                                                   "', maxOffsetWidth: '" + maxOffsetWidth + "']";
+    */
 }
 
 // Seed randomizer from https://stackoverflow.com/questions/521295/seeding-the-random-number-generator-in-javascript

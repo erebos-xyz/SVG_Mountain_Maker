@@ -3,10 +3,71 @@
 <head>
 <title>MountainMaker Test Site</title>
 <script src="MountainMaker.js"></script>
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+    table {
+        width:100%;
+    }
+</style>
 </head>
-<body onload="createMountain()">
+<body>
 
-    <mountain seed="666"/>
+    <section>
+        <table width="1920">
+            <tr>
+                <td>
+                    <div>
+                        <mountain/>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <mountain/>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <mountain/>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <mountain/>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <form name="paramForm">
+            <label for="fseed">seed:</label><br>
+            <input type="number" id="fseed" name="fseed" min="1" max="99999" value="666"><br>
+            <label for="fstartHeight">startHeight:</label><br>
+            <input type="range" id="fstartHeight" name="fstartHeight" min="0" max="1000" value="508" onchange="document.getElementById('fstartHeightValue').innerHTML = this.value;"><a id="fstartHeightValue">508</a><br>
+            <label for="fminMountainHeight">minMountainHeight:</label><br>
+            <input type="range" id="fminMountainHeight" name="fminMountainHeight" min="0" max="500" value="56" onchange="document.getElementById('fminMountainHeightValue').innerHTML = this.value;"><a id="fminMountainHeightValue">56</a><br>
+            <label for="fmaxMountainHeight">maxMountainHeight:</label><br>
+            <input type="range" id="fmaxMountainHeight" name="fmaxMountainHeight" min="0" max="1000" value="512" onchange="document.getElementById('fmaxMountainHeightValue').innerHTML = this.value;"><a id="fmaxMountainHeightValue">512</a><br>
+            <label for="fairGap">airGap:</label><br>
+            <input type="range" id="fairGap" name="fairGap" min="0" max="200" value="102" onchange="document.getElementById('fairGapValue').innerHTML = this.value;"><a id="fairGapValue">102</a><br>
+            <label for="fmaxOffsetHeight">maxOffsetHeight:</label><br>
+            <input type="range" id="fmaxOffsetHeight" name="fmaxOffsetHeight" min="0" max="250" value="64" onchange="document.getElementById('fmaxOffsetHeightValue').innerHTML = this.value;"><a id="fmaxOffsetHeightValue">64</a><br>
+            <label for="fwidth">width:</label><br>
+            <input type="number" id="fwidth" name="fwidth" min="0" value="1920"><br>
+            <label for="fminOffsetWidth">minOffsetWidth:</label><br>
+            <input type="range" id="fminOffsetWidth" name="fminOffsetWidth" min="0" max="300" value="32" onchange="document.getElementById('fminOffsetWidthValue').innerHTML = this.value;"><a id="fminOffsetWidthValue">32</a><br>
+            <label for="fmaxOffsetWidth">maxOffsetWidth:</label><br>
+            <input type="range" id="fmaxOffsetWidth" name="fmaxOffsetWidth" min="0" max="1000" value="96" onchange="document.getElementById('fmaxOffsetWidthValue').innerHTML = this.value;"><a id="fmaxOffsetWidthValue">96</a><br>
+            <label for="fbaseColour">baseColour:</label><br>
+            <input type="color" id="fbaseColour" name="fbaseColour" value="#1e0522" onchange="document.getElementById('fbaseColourValue').innerHTML = this.value;"><a id="fbaseColourValue">#1e0522</a><br>
+            <input type="button" value="Generate" onclick="createMountain()">
+          </form>
+    </section>
 
 </body>
 </html>

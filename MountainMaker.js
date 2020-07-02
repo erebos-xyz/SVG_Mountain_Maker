@@ -13,7 +13,7 @@ function createMountain() {
     if(mountainTag.hasAttribute("seed")) {
         seed = mountainTag.getAttribute("seed");
     } else {
-        seed = 1234;
+        seed = document.forms["paramForm"]["fseed"].value || 1234;
     }
 
     // Generate primordial randomizer
@@ -23,55 +23,55 @@ function createMountain() {
     if(mountainTag.hasAttribute("startHeight")) {
         startHeight = parseInt(mountainTag.getAttribute("startHeight"));
     } else {
-        startHeight = 508;
+        startHeight = parseInt(document.forms["paramForm"]["fstartHeight"].value || 508);
     }
 
     if(mountainTag.hasAttribute("minMountainHeight")) {
         minMountainHeight = parseInt(mountainTag.getAttribute("minMountainHeight"));
     } else {
-        minMountainHeight = 56;
+        minMountainHeight = parseInt(document.forms["paramForm"]["fminMountainHeight"].value || 56);
     }
 
     if(mountainTag.hasAttribute("maxMountainHeight")) {
         maxMountainHeight = parseInt(mountainTag.getAttribute("maxMountainHeight"));
     } else {
-        maxMountainHeight = 512;
+        maxMountainHeight = parseInt(document.forms["paramForm"]["fmaxMountainHeight"].value || 512);
     }
 
     if(mountainTag.hasAttribute("airGap")) {
         airGap = parseInt(mountainTag.getAttribute("airGap"));
     } else {
-        airGap = Math.floor(maxMountainHeight * 0.2);
+        airGap = parseInt(document.forms["paramForm"]["fairGap"].value || Math.floor(maxMountainHeight * 0.2));
     }
 
     if(mountainTag.hasAttribute("maxOffsetHeight")) {
         maxOffsetHeight = parseInt(mountainTag.getAttribute("maxOffsetHeight"));
     } else {
-        maxOffsetHeight = 64;
+        maxOffsetHeight = parseInt(document.forms["paramForm"]["fmaxOffsetHeight"].value || 64);
     }
 
     if(mountainTag.hasAttribute("width")) {
         width = parseInt(mountainTag.getAttribute("width"));
     } else {
-        width = 1920;
+        width = parseInt(document.forms["paramForm"]["fwidth"].value || 1920);
     }
 
     if(mountainTag.hasAttribute("minOffsetWidth")) {
         minOffsetWidth = parseInt(mountainTag.getAttribute("minOffsetWidth"));
     } else {
-        minOffsetWidth = 32;
+        minOffsetWidth = parseInt(document.forms["paramForm"]["fminOffsetWidth"].value || 32);
     }
 
     if(mountainTag.hasAttribute("maxOffsetWidth")) {
         maxOffsetWidth = parseInt(mountainTag.getAttribute("maxOffsetWidth"));
     } else {
-        maxOffsetWidth = 96;
+        maxOffsetWidth = parseInt(document.forms["paramForm"]["fmaxOffsetWidth"].value || 96);
     }
 
     if(mountainTag.hasAttribute("baseColour")) {
         baseColour = mountainTag.getAttribute("baseColour");
     } else {
-        baseColour = "#1e0522";
+        baseColour = document.forms["paramForm"]["fbaseColour"].value || "#1e0522";
     }
 
     // Setting Randomizer

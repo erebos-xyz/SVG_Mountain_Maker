@@ -3,7 +3,8 @@ function createMountain() {
     let startHeight, minMountainHeight, maxMountainHeight, maxOffsetHeight, 
         width, minOffsetWidth, maxOffsetWidth, 
         seed, myRandomFunction, myRandomFunctionLeft, myRandomFunctionRight,
-        polygon, polygonLeft, polygonRight, helpX, helpY,
+        svg, defs, style, polygon, 
+        polygonLeft, polygonRight, helpX, helpY,
         baseColour;
 
     let mountainTag = document.getElementsByTagName("mountain")[0];
@@ -110,20 +111,34 @@ function createMountain() {
     polygonLeft += " " + Math.floor(width/2) + " " + maxMountainHeight;
     polygonLeft += " " + Math.floor(width/2) + " " + (maxMountainHeight - startHeight);
 
-    // Create mountain AVG (Polygon)
+    // Create mountain SVG (Polygon)
+    svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("id", "s" + seed);
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    svg.setAttribute("viewBox", "0 0 " + width + " " + (maxMountainHeight * 1.1))
+
+    defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+    style = document.createElementNS("http://www.w3.org/2000/svg", "style");
+
+    defs.appendChild(style);
+    svg.appendChild(defs);
+
     polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
     polygon.setAttribute("class", "cls-1");
     polygon.setAttribute("points", polygonLeft);
-    document.getElementById("Layer_1").appendChild(polygon);
+    svg.appendChild(polygon);
 
     polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
     polygon.setAttribute("class", "cls-1");
     polygon.setAttribute("points", polygonRight);
-    document.getElementById("Layer_1").appendChild(polygon);
+    svg.appendChild(polygon);
 
     // Colourize mountain
-    document.getElementById("Layer_1").getElementsByTagName("defs")[0].getElementsByTagName("style")[0].innerHTML = ".cls-1{fill:" + baseColour + ";stroke:" + baseColour + ";}";
+    style.innerHTML = ".cls-1{fill:" + baseColour + ";stroke:" + baseColour + ";}";
+    
     // Show mountain
+    mountainTag.parentNode.insertBefore(svg, mountainTag);
+    mountainTag.parentNode.removeChild(mountainTag);
 
     // Output parameters for debugging
     document.getElementById("testId").innerText = "Parameters: [Seed: '" + seed + 
